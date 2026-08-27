@@ -1,0 +1,655 @@
+/* =========================================================
+   FUENTES
+   Oswald: titulares condensados, estilo etiqueta de rollo.
+   Work Sans: texto de lectura, limpio y neutro.
+   JetBrains Mono: datos/etiquetas, como los EXIF de una cámara.
+========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Work+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap');
+
+
+
+/* =========================================================
+   VARIABLES DE DISEÑO
+========================================================= */
+
+:root {
+
+    /* Paleta: papel de sala de revelado */
+    --papel: #ece7dd;
+    --papel-oscuro: #dcd5c7;
+    --tinta: #211f1c;
+    --tinta-suave: #55524a;
+
+    /* Acentos: gel de filtro de estudio fotográfico (morado) */
+    --acento: #9c27b0;
+    --acento-oscuro: #7b1fa2;
+    --acento-medio: #8e24aa;
+    --acento-claro: #ab47bc;
+
+    --blanco: #fdfcf9;
+    --linea: #c7bfae;
+
+    --sombra: 0 8px 24px rgba(33, 31, 28, 0.18);
+
+    --fuente-titulo: "Oswald", sans-serif;
+    --fuente-texto: "Work Sans", sans-serif;
+    --fuente-etiqueta: "JetBrains Mono", monospace;
+}
+
+
+
+/* =========================================================
+   ESTILOS GENERALES
+========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    margin: 0;
+    font-family: var(--fuente-texto);
+    background-color: var(--papel);
+    color: var(--tinta);
+    line-height: 1.65;
+}
+
+
+h1, h2, h3 {
+    font-family: var(--fuente-titulo);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--tinta);
+}
+
+
+
+/* =========================================================
+   FRANJA DE PERFORACIONES (estilo carrete de película)
+   Se usa en el encabezado y en el pie de página.
+========================================================= */
+
+.header-perforado::before,
+.header-perforado::after,
+footer::before,
+footer::after {
+    content: "";
+    display: block;
+    height: 14px;
+    background-image: radial-gradient(circle, var(--papel) 2.5px, transparent 2.6px);
+    background-size: 22px 14px;
+    background-repeat: repeat-x;
+    background-position: center;
+}
+
+
+
+/* =========================================================
+   ENCABEZADO
+========================================================= */
+
+header {
+    background-color: var(--tinta);
+    color: var(--papel);
+    text-align: center;
+    position: relative;
+}
+
+
+header .header-contenido {
+    padding: 26px 20px 30px;
+}
+
+
+header h1 {
+    margin: 0 0 6px;
+    font-size: 2.2rem;
+    color: var(--blanco);
+}
+
+
+.subtitulo {
+    margin: 0 0 22px;
+    font-family: var(--fuente-etiqueta);
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--acento);
+}
+
+
+
+/* =========================================================
+   MENÚ DE NAVEGACIÓN
+========================================================= */
+
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+
+nav a {
+    font-family: var(--fuente-etiqueta);
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--papel);
+    text-decoration: none;
+    padding: 8px 14px;
+    border: 1px solid rgba(236, 231, 221, 0.3);
+    border-radius: 2px;
+}
+
+
+nav a:hover {
+    background: linear-gradient(135deg, var(--acento-oscuro), var(--acento));
+    border-color: var(--acento);
+    color: var(--blanco);
+    box-shadow: 0 3px 14px rgba(156, 39, 176, 0.4);
+}
+
+
+
+/* =========================================================
+   CONTENIDO PRINCIPAL
+========================================================= */
+
+main {
+    padding: 20px;
+    counter-reset: cuadro;
+}
+
+
+
+/* =========================================================
+   SECCIONES GENERALES
+========================================================= */
+
+section {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 32px 28px;
+    background-color: var(--blanco);
+    border: 1px solid var(--linea);
+    counter-increment: cuadro;
+}
+
+
+main > section > h2 {
+    margin-top: 0;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+}
+
+
+main > section > h2::before {
+    content: "Nº " counter(cuadro, decimal-leading-zero);
+    font-family: var(--fuente-etiqueta);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    color: var(--acento);
+    text-transform: none;
+}
+
+
+
+/* =========================================================
+   SECCIÓN INICIO
+========================================================= */
+
+.inicio {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+
+.inicio-texto {
+    flex: 1 1 400px;
+}
+
+
+.inicio-imagen {
+    flex: 1 1 250px;
+    text-align: center;
+}
+
+
+
+/* =========================================================
+   IMAGEN DE PERFIL
+========================================================= */
+
+.foto-perfil {
+    width: 220px;
+    max-width: 100%;
+    height: auto;
+    border-radius: 50%;
+    border: 3px solid var(--papel-oscuro);
+    padding: 6px;
+    filter: grayscale(100%);
+    transition: filter 0.4s ease;
+}
+
+
+.foto-perfil:hover {
+    filter: grayscale(0%);
+}
+
+
+
+/* =========================================================
+   BOTÓN
+========================================================= */
+
+.boton {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, var(--acento-oscuro), var(--acento));
+    color: var(--blanco);
+    text-decoration: none;
+    font-family: var(--fuente-etiqueta);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    box-shadow: 0 0 0 rgba(156, 39, 176, 0);
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+
+.boton:hover {
+    background: linear-gradient(135deg, var(--acento), var(--acento-claro));
+    box-shadow: 0 4px 18px rgba(156, 39, 176, 0.45);
+    transform: translateY(-1px);
+}
+
+
+
+/* =========================================================
+   HABILIDADES
+========================================================= */
+
+.lista-habilidades {
+    list-style: none;
+    padding-left: 0;
+}
+
+
+.lista-habilidades li {
+    position: relative;
+    padding-left: 26px;
+    margin-bottom: 12px;
+    font-size: 1.02rem;
+}
+
+
+.lista-habilidades li::before {
+    content: "○";
+    position: absolute;
+    left: 0;
+    color: var(--acento);
+    font-size: 0.9rem;
+}
+
+
+
+/* =========================================================
+   CONTENEDOR DE PROYECTOS
+========================================================= */
+
+.contenedor-proyectos {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-top: 25px;
+}
+
+
+
+/* =========================================================
+   TARJETAS DE PROYECTOS
+   Estilo "impresión fotográfica": marco blanco tipo passe-partout
+========================================================= */
+
+.proyecto {
+    flex: 1 1 250px;
+    padding: 14px 14px 20px;
+    background-color: var(--blanco);
+    border: 1px solid var(--linea);
+    box-shadow: var(--sombra);
+    transition: transform 0.25s ease, box-shadow 0.3s ease;
+}
+
+
+.proyecto:hover {
+    box-shadow: 0 10px 28px rgba(123, 31, 162, 0.28);
+}
+
+
+.proyecto:nth-child(odd) {
+    transform: rotate(-1deg);
+}
+
+
+.proyecto:nth-child(even) {
+    transform: rotate(1deg);
+}
+
+
+.proyecto:hover {
+    transform: rotate(0deg) translateY(-4px);
+}
+
+
+.proyecto img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    filter: grayscale(100%);
+    transition: filter 0.4s ease;
+}
+
+
+.proyecto:hover img {
+    filter: grayscale(0%);
+}
+
+
+.proyecto h3 {
+    margin: 14px 0 8px;
+    font-size: 1.05rem;
+}
+
+
+.proyecto p {
+    font-size: 0.95rem;
+    color: var(--tinta-suave);
+}
+
+
+
+/* =========================================================
+   IMÁGENES GENERALES
+========================================================= */
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+
+
+/* =========================================================
+   GALERÍA
+========================================================= */
+
+.galeria {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 18px;
+    margin-top: 25px;
+}
+
+
+
+/* Cada elemento de la galería: impresión fotográfica con
+   número de cuadro, como en una hoja de contactos */
+
+.galeria figure {
+    position: relative;
+    flex: 1 1 240px;
+    max-width: 260px;
+    margin: 0;
+    padding: 10px 10px 0;
+    background-color: var(--blanco);
+    border: 1px solid var(--linea);
+    box-shadow: var(--sombra);
+    counter-increment: foto;
+}
+
+
+.galeria {
+    counter-reset: foto;
+}
+
+
+.galeria figure::before {
+    content: "Fr. " counter(foto, decimal-leading-zero);
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: linear-gradient(135deg, var(--acento-oscuro), var(--acento-medio));
+    color: var(--blanco);
+    font-family: var(--fuente-etiqueta);
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    padding: 3px 8px;
+    box-shadow: 0 2px 10px rgba(123, 31, 162, 0.4);
+    z-index: 2;
+}
+
+
+
+/* =========================================================
+   IMÁGENES DE LA GALERÍA
+========================================================= */
+
+.galeria figure img {
+    display: block;
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    cursor: pointer;
+    filter: grayscale(100%);
+    transition: filter 0.4s ease, transform 0.3s ease;
+}
+
+
+
+/* =========================================================
+   EFECTO AL PASAR EL MOUSE
+========================================================= */
+
+.galeria figure:hover img {
+    filter: grayscale(0%);
+    transform: scale(1.04);
+}
+
+
+
+/* =========================================================
+   DESCRIPCIÓN DE LAS IMÁGENES
+========================================================= */
+
+.galeria figcaption {
+    padding: 12px 4px 16px;
+    text-align: left;
+    font-size: 0.88rem;
+    color: var(--tinta-suave);
+}
+
+
+
+/* =========================================================
+   VISOR DE IMÁGENES
+========================================================= */
+
+.visor {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(33, 31, 28, 0.95);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 40px;
+}
+
+
+
+/* =========================================================
+   IMAGEN AMPLIADA
+========================================================= */
+
+.imagen-ampliada {
+    max-width: 90%;
+    max-height: 90%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border: 6px solid var(--blanco);
+}
+
+
+
+/* =========================================================
+   BOTÓN CERRAR
+========================================================= */
+
+.cerrar {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: var(--papel);
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: var(--fuente-titulo);
+}
+
+
+.cerrar:hover {
+    color: var(--acento);
+}
+
+
+
+/* =========================================================
+   PIE DE PÁGINA
+========================================================= */
+
+footer {
+    background-color: var(--tinta);
+    color: var(--papel);
+    text-align: center;
+    margin-top: 40px;
+    position: relative;
+}
+
+
+footer .footer-contenido {
+    padding: 30px 20px;
+}
+
+
+footer h2 {
+    margin-top: 0;
+    color: var(--blanco);
+}
+
+
+footer a {
+    color: var(--acento);
+    font-family: var(--fuente-etiqueta);
+    font-size: 0.9rem;
+}
+
+
+footer a:hover {
+    color: var(--blanco);
+}
+
+
+.copyright {
+    margin-top: 20px;
+    font-family: var(--fuente-etiqueta);
+    font-size: 0.75rem;
+    color: var(--tinta-suave);
+    letter-spacing: 0.03em;
+}
+
+
+
+/* =========================================================
+   ADAPTACIÓN PARA PANTALLAS PEQUEÑAS
+========================================================= */
+
+@media (max-width: 600px) {
+
+    header h1 {
+        font-size: 1.6rem;
+    }
+
+
+    nav {
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+    }
+
+
+    .inicio {
+        text-align: center;
+    }
+
+
+    section {
+        margin: 20px auto;
+        padding: 24px 18px;
+    }
+
+
+    .contenedor-proyectos {
+        flex-direction: column;
+    }
+
+
+    .proyecto:nth-child(odd),
+    .proyecto:nth-child(even) {
+        transform: rotate(0deg);
+    }
+
+
+    .galeria {
+        flex-direction: column;
+        align-items: center;
+    }
+
+
+    .galeria figure {
+        width: 100%;
+        max-width: 100%;
+    }
+
+
+    .visor {
+        padding: 20px;
+    }
+
+
+    .imagen-ampliada {
+        max-width: 100%;
+        max-height: 85%;
+    }
+
+}
